@@ -22,4 +22,4 @@ app.get('/',(req,res)=>{
 require('./login.js')(app);
 require('./judge.js')(app);
 require('./problem.js')(app);
-app.listen(80);
+app.listen(process.env.PORT||80);
