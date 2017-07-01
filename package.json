@@ -9,6 +9,9 @@
   "keywords": [],
   "author": "maple3142",
   "license": "ISC",
+  "engines": {
+    "node": ">=6"
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "bluebird": "^3.5.0",
