@@ -12,7 +12,8 @@
     ]
   },
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
