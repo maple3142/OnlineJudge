@@ -1,0 +1,42 @@
+{
+  "config": {
+    "sourceName": "%s.cpp",
+    "destName": "%s.exe",
+    "compile": "g++ -o %s %s"
+  },
+  "users": [
+    {
+      "account": "admin",
+      "password": "admin",
+      "id": "0.42024935949829345",
+      "ok": [
+        true,
+        false,
+        false
+      ]
+    }
+  ],
+  "pbs": [
+    {
+      "content": "<h1 id=\"abproblem\">A+B Problem</h1>\n<h5 id=\"\">輸入</h5>\n<p>A B</p>\n<h5 id=\"-1\">輸出</h5>\n<p>A+B</p>",
+      "problem": "A+B",
+      "id": 0,
+      "in": "2 9",
+      "out": "11"
+    },
+    {
+      "content": "<h1 id=\"helloworld\">Hello World</h1>\n<p>輸出一個\"Hello World\"然後換行</p>",
+      "problem": "問題A",
+      "id": 1,
+      "in": "",
+      "out": "Hello World"
+    },
+    {
+      "content": "<h1 id=\"b\">問題B</h1>\n<p>輸入有一個字串，把他輸出出來並換行</p>",
+      "problem": "問題B",
+      "id": 2,
+      "in": "asds",
+      "out": "asds"
+    }
+  ]
+}
