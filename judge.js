@@ -20,7 +20,7 @@ module.exports=function(app){
 		db=low('./db.json');
 		var r=db.get('users').findLast({id: req.body.id}).value();
 		if(!r)res.json({ok: false});
-		var json={ok: true,result: rs.OTHERS,time: -1};
+		var json={ok: true,result: rs.others,time: -1};
 		if(r){
 			var code=req.body.code;
 			var name=Math.random().toString(36).substring(7);
@@ -49,11 +49,13 @@ module.exports=function(app){
 						cx.on('close',code=>{
 							console.log('output:\n',out,'\n');
 							if(code!=0){
+								console.log(rs.re);
 								json.result=rs.re;
 								json.time=Date.now()-start;
 								res.json(json);
 							}
 							else if(fx(out)===p.out){
+								console.log(rs.ac);
 								json.result=rs.ac;
 								json.time=Date.now()-start;
 								res.json(json);
@@ -67,6 +69,7 @@ module.exports=function(app){
 								db.get('users').findLast({id: req.body.id}).set('ok',ok).write();
 							}
 							else{
+								console.log(rs.wa);
 								json.result=rs.wa;
 								json.time=Date.now()-start;
 								res.json(json);
@@ -75,6 +78,7 @@ module.exports=function(app){
 						});
 						setTimeout(function(){
 							if(!cx)return;
+							console.log(rs.tle);
 							json.result=rs.tle;
 							json.time=Date.now()-start;
 							res.json(json);
