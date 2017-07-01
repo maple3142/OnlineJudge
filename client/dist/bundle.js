@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5e3cf0a86937700d7a6e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "63754558d28a9fc83581"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -19048,7 +19048,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.autherror = false
       }
     }
-  }, [_vm._v("\n\t\t\t帳號認證錯誤，請重新登入\n\t\t")]), _vm._v(" "), _c('b-alert', {
+  }, [_vm._v("\n\t\t\t認證錯誤，請重新登入\n\t\t")]), _vm._v(" "), _c('b-alert', {
     attrs: {
       "variant": _vm.resultvar,
       "dismissible": "",

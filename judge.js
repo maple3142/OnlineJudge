@@ -20,7 +20,6 @@ module.exports=function(app){
 		db=low('./db.json');
 		var r=db.get('users').findLast({id: req.body.id}).value();
 		if(!r)res.json({ok: false});
-		var json={ok: true,result: rs.others,time: -1};
 		if(r){
 			var code=req.body.code;
 			var name=Math.random().toString(36).substring(7);
@@ -28,6 +27,9 @@ module.exports=function(app){
 			var dn=path.join(__dirname,'temp',util.format(db.get('config.destName').value(),name));
 			var compile=util.format(db.get('config.compile').value(),dn,sn);
 			var p=db.get('pbs').nth(req.body.problem).value();
+			if(!p)res.json({ok: false});
+			console.log(r.account+' request to judge');
+			var json={ok: true,result: rs.others,time: -1};
 			fs.writeFileAsync(sn,code)
 			.then(function(){
 				var c=cp.exec(compile);

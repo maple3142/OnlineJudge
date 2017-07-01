@@ -14,7 +14,7 @@
 				程式碼不能為空
 			</b-alert>
 			<b-alert variant="danger" dismissible :show="this.autherror" @dismissed="autherror=false">
-				帳號認證錯誤，請重新登入
+				認證錯誤，請重新登入
 			</b-alert>
 			<b-alert :variant="resultvar" dismissible :show="this.showresult" @dismissed="showresult=false">
 				結果: {{ result }}
