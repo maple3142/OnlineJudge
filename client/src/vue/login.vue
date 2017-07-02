@@ -51,7 +51,6 @@ export default {
 					localStorage.login=this.$root.login=true;
 					localStorage.name=this.$root.name=this.acc;
 					localStorage.id=this.$root.id=d.data.id;
-					console.log(d.data.id)
 					this.$router.push('/');
 				}
 				else{

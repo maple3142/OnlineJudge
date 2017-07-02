@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "63754558d28a9fc83581"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c291e9e868c0a2eed581"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -17999,7 +17999,7 @@ if(true) {
 /* 55 */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE HTML>\n<html>\n<head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n\t<title>OnlineJudge</title>\n</head>\n<body>\n\t<div id=\"app\">\n    \t<navbar title=\"OnlineJudge\"></navbar>\n\t\t<div class=\"container\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<router-view></router-view>\n\t\t\t</div>\n\t\t</div>\n  \t</div>\n\t<script src=\"dist/bundle.js\"></script>\n</body>\n</html>"
+module.exports = "<!DOCTYPE HTML>\n<html>\n<head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\t<script src=\"https://rawgit.com/ajaxorg/ace-builds/master/src-min-noconflict/ace.js\"></script>\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n\t<title>OnlineJudge</title>\n</head>\n<body>\n\t<div id=\"app\">\n    \t<navbar title=\"OnlineJudge\"></navbar>\n\t\t<div class=\"container\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<router-view></router-view>\n\t\t\t</div>\n\t\t</div>\n  \t</div>\n\t<script src=\"dist/bundle.js\"></script>\n</body>\n</html>"
 
 /***/ }),
 /* 56 */
@@ -18156,7 +18156,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('router-link', {
     staticClass: "nav-item",
     attrs: {
-      "to": this.$props.to,
+      "to": this.to,
       "tag": "li"
     }
   }, [_c('a', {
@@ -18412,7 +18412,6 @@ exports.default = {
 					localStorage.login = _this.$root.login = true;
 					localStorage.name = _this.$root.name = _this.acc;
 					localStorage.id = _this.$root.id = d.data.id;
-					console.log(d.data.id);
 					_this.$router.push('/');
 				} else {
 					_this.acc = _this.pwd = '';
@@ -18505,13 +18504,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "variant": "primary"
     }
-  }, [_vm._v(_vm._s(this.$props.btn))]), _vm._v(" "), _c('b-collapse', {
+  }, [_vm._v(_vm._s(this.btn))]), _vm._v(" "), _c('b-collapse', {
     attrs: {
       "id": "data"
     }
   }, [_c('b-card', {
     attrs: {
-      "title": this.$props.title
+      "title": this.title
     }
   }, [_vm._t("default")], 2)], 1)], 1)
 },staticRenderFns: []}
@@ -18857,7 +18856,7 @@ var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(78),
   /* template */
-  __webpack_require__(79),
+  __webpack_require__(82),
   /* styles */
   null,
   /* scopeId */
@@ -18903,9 +18902,46 @@ var _axios = __webpack_require__(5);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _editor = __webpack_require__(79);
+
+var _editor2 = _interopRequireDefault(_editor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 exports.default = {
+	components: { editor: _editor2.default },
 	data: function data() {
 		return {
 			content: 'please wait...',
@@ -18915,7 +18951,8 @@ exports.default = {
 			result: "null",
 			time: 0,
 			showresult: false,
-			resultvar: 'success'
+			resultvar: 'success',
+			classic_editor: false
 		};
 	},
 	created: function created() {
@@ -18926,9 +18963,15 @@ exports.default = {
 		}).then(function (d) {
 			_this.content = d.data.content;
 		});
+		if (!window.ace) {
+			this.classic_editor = true;
+		}
 	},
 
 	methods: {
+		update: function update(val) {
+			if (val !== this.code) this.code = val;
+		},
 		submit: function submit() {
 			var _this2 = this;
 
@@ -18963,36 +19006,124 @@ exports.default = {
 			}
 		}
 	}
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(80),
+  /* template */
+  __webpack_require__(81),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\Users\\Administrator\\Documents\\oj\\client\\src\\vue\\editor.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editor.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (true) {(function () {
+  var hotAPI = __webpack_require__(0)
+  hotAPI.install(__webpack_require__(2), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7811dec7", Component.options)
+  } else {
+    hotAPI.reload("data-v-7811dec7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 //
 //
 //
 //
 //
 
+exports.default = {
+  props: ['editorId', 'content', 'lang', 'theme', 'fontSize'],
+  data: function data() {
+    return {
+      editor: Object,
+      beforeContent: ''
+    };
+  },
+
+  watch: {
+    'content': function content(value) {
+      if (this.beforeContent !== value) {
+        this.editor.setValue(value, 1);
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var lang = this.lang || 'c_cpp';
+    var theme = this.theme || 'Eclipse';
+
+    this.editor = window.ace.edit(this.editorId);
+    this.editor.setValue(this.content, 1);
+
+    this.editor.getSession().setMode('ace/mode/' + lang);
+    this.editor.setTheme('ace/theme/' + theme);
+
+    this.editor.setOptions({
+      fontSize: this.fontSize || 14
+    });
+
+    this.editor.on('change', function () {
+      _this.beforeContent = _this.editor.getValue();
+      _this.$emit('change', _this.editor.getValue());
+    });
+  }
+};
+
 /***/ }),
-/* 79 */
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": _vm.editorId
+    }
+  })
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (true) {
+  module.hot.accept()
+  if (module.hot.data) {
+     __webpack_require__(0).rerender("data-v-7811dec7", module.exports)
+  }
+}
+
+/***/ }),
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -19008,7 +19139,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "code"
     }
-  }, [_vm._v("C/C++程式碼:")]), _vm._v(" "), _c('b-form-input', {
+  }, [_vm._v("C/C++程式碼:")]), _vm._v(" "), (_vm.classic_editor) ? _c('b-form-input', {
     attrs: {
       "id": "code",
       "textarea": "",
@@ -19021,7 +19152,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "code"
     }
-  }), _vm._v(" "), _c('b-button', {
+  }) : _vm._e(), _vm._v(" "), (!_vm.classic_editor) ? _c('div', {
+    staticStyle: {
+      "height": "300px"
+    }
+  }, [_c('editor', {
+    staticStyle: {
+      "width": "100%",
+      "height": "100%"
+    },
+    attrs: {
+      "editor-id": "code",
+      "content": _vm.code,
+      "lang": "c_cpp",
+      "fontSize": 14
+    },
+    on: {
+      "change": _vm.update
+    }
+  }), _vm._v(" "), _c('br')], 1) : _vm._e(), _vm._v(" "), _c('b-button', {
     staticClass: "btn btn-primary",
     on: {
       "click": _vm.submit

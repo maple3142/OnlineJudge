@@ -25,7 +25,8 @@ module.exports=function(app){
 			var name=Math.random().toString(36).substring(7);
 			var sn=path.join(__dirname,'temp',util.format(db.get('config.sourceName').value(),name));
 			var dn=path.join(__dirname,'temp',util.format(db.get('config.destName').value(),name));
-			var compile=util.format(db.get('config.compile').value(),dn,sn);
+			var compile=util.format(db.get('config.compileCommand').value(),dn,sn);
+			var limit=db.get('config.timeLimit').value();
 			var p=db.get('pbs').nth(req.body.problem).value();
 			if(!p)res.json({ok: false});
 			console.log(r.account+' request to judge');
@@ -34,10 +35,13 @@ module.exports=function(app){
 			.then(function(){
 				var c=cp.exec(compile);
 				c.on('exit',(code,sig)=>{
+					console.log('exit '+code)
 					if(code!=0){
-						json.result=rs.CE;
+						json.result=rs.ce;
 						json.time=-1;
 						res.json(json);
+						/*delete*/
+						fs.unlinkAsync(sn);
 					}
 					else{
 						var start=Date.now();
@@ -49,19 +53,25 @@ module.exports=function(app){
 							out+=s.toString();
 						});
 						cx.on('close',code=>{
-							console.log('output:\n',out,'\n');
+							console.log('-----OUTPUT START-----\n',out,'-----OUTPUT END-----\n');
 							if(code!=0){
+								if(!cx)return;
 								console.log(rs.re);
 								json.result=rs.re;
 								json.time=Date.now()-start;
 								res.json(json);
+								/*delete*/
+								fs.unlinkAsync(sn);
+								fs.unlinkAsync(dn);
 							}
 							else if(fx(out)===p.out){
 								console.log(rs.ac);
 								json.result=rs.ac;
 								json.time=Date.now()-start;
 								res.json(json);
-
+								/*delete*/
+								fs.unlinkAsync(sn);
+								fs.unlinkAsync(dn);
 								var ok=db.get('users').findLast({id: req.body.id}).get('ok').value();
 								var l=db.get('pbs').value().length;
 								for(var i=0;i<l;i++){
@@ -75,6 +85,9 @@ module.exports=function(app){
 								json.result=rs.wa;
 								json.time=Date.now()-start;
 								res.json(json);
+								/*delete*/
+								fs.unlinkAsync(sn);
+								fs.unlinkAsync(dn);
 							}
 							cx=null;
 						});
@@ -85,7 +98,11 @@ module.exports=function(app){
 							json.time=Date.now()-start;
 							res.json(json);
 							cx.kill();
-						},10000);
+							cx=null;
+							/*delete*/
+							fs.unlinkAsync(sn);
+							fs.unlinkAsync(dn);
+						},limit);
 					}
 				});
 			});

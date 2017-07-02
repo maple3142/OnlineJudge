@@ -6,8 +6,12 @@
 			</div>
 			<div class="form-group">
 				<label for="code">C/C++程式碼:</label>
-				<b-form-input id="code" textarea v-model="code" :rows="15">
+				<b-form-input id="code" textarea v-model="code" :rows="15" v-if="classic_editor">
 				</b-form-input>
+				<div style="height: 300px" v-if="!classic_editor">
+					<editor editor-id="code" :content="code" lang="c_cpp" style="width: 100%;height: 100%;" @change="update" :fontSize="14"></editor>
+					<br>
+				</div>
 				<b-button class="btn btn-primary" @click="submit">送出</b-button>
 			</div>
 			<b-alert variant="danger" dismissible :show="this.emptymsg" @dismissed="emptymsg=false">
@@ -27,7 +31,9 @@
 
 <script>
 import axios from 'axios';
+import editor from  './editor.vue';
 export default {
+	components: { editor },
 	data(){
 		return {
 			content: 'please wait...',
@@ -37,7 +43,8 @@ export default {
 			result: "null",
 			time: 0,
 			showresult: false,
-			resultvar: 'success'
+			resultvar: 'success',
+			classic_editor: false
 		}
 	},
 	created(){
@@ -46,8 +53,15 @@ export default {
 		}).then(d=>{
 			this.content=d.data.content;
 		});
+		if(!window.ace){
+			this.classic_editor=true;
+		}
 	},
 	methods: {
+		update(val){
+			if(val!==this.code)
+				this.code=val;
+		},
 		submit(){
 			if(!this.code){
 				this.emptymsg=true;

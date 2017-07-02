@@ -1,5 +1,5 @@
 <template lang="html">
-	<router-link :to="this.$props.to" class="nav-item" tag="li">
+	<router-link :to="this.to" class="nav-item" tag="li">
     	<a class="nav-link"><slot></slot></a>
     </router-link>
 </template>
