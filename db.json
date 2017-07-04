@@ -1,15 +1,31 @@
 {
   "config": {
-    "sourceName": "%s.cpp",
-    "destName": "%s.exe",
-    "compileCommand": "g++ -o %s %s",
-    "timeLimit": 1000
+    "judgemode": 2,
+    "remote_judge": {
+      "url": "",
+      "timelimit": 1000,
+      "compile": 1000,
+      "result": {
+				"Accepted": "AC",
+				"Runtime_Error": "RE",
+				"Time_Limit_Exceeded": "TLE",
+				"Compile_Error": "CE",
+				"Wrong_Answer": "WA",
+				"System_Error": "SE"
+			}
+    },
+    "dangerous_judge": {
+      "sourceName": "%s.cpp",
+      "destName": "%s.exe",
+      "compileCommand": "g++ -o %s %s",
+      "timeLimit": 1000
+    }
   },
   "users": [
     {
       "account": "admin",
       "password": "admin",
-      "id": "0.84369001901042",
+      "id": "0.40467664865238584",
       "ok": [
         true,
         true,

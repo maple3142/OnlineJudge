@@ -20,7 +20,8 @@
     "express": "^4.15.3",
     "fs-extra": "^3.0.1",
     "lowdb": "^0.16.2",
-    "showdown": "^1.7.1"
+    "showdown": "^1.7.1",
+    "simple-judger": "^1.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
