@@ -1,18 +1,19 @@
 {
   "config": {
-    "judgemode": 2,
-    "remote_judge": {
-      "url": "",
+    "judgemode": 1,
+    "judge": {
+      "url": "http://127.0.0.1:7777",
       "timelimit": 1000,
-      "compile": 1000,
+      "compile": "g++ -o {dest} {source}",
       "result": {
-				"Accepted": "AC",
-				"Runtime_Error": "RE",
-				"Time_Limit_Exceeded": "TLE",
-				"Compile_Error": "CE",
-				"Wrong_Answer": "WA",
-				"System_Error": "SE"
-			}
+        "Accepted": "AC",
+        "Runtime_Error": "RE",
+        "Time_Limit_Exceeded": "TLE",
+        "Compile_Error": "CE",
+        "Wrong_Answer": "WA",
+        "System_Error": "SE"
+      },
+      "debug": false
     },
     "dangerous_judge": {
       "sourceName": "%s.cpp",
@@ -25,7 +26,7 @@
     {
       "account": "admin",
       "password": "admin",
-      "id": "0.40467664865238584",
+      "id": "0.21356840711086988",
       "ok": [
         true,
         true,
@@ -38,7 +39,7 @@
       "content": "<h1 id=\"abproblem\">A+B Problem</h1>\n<h4 id=\"\">輸入</h4>\n<p>A B</p>\n<h4 id=\"-1\">輸出</h4>\n<p>A+B</p>",
       "problem": "A+B",
       "id": 0,
-      "in": "2 9",
+      "in": "2 9\n",
       "out": "11"
     },
     {
@@ -52,7 +53,7 @@
       "content": "<h1 id=\"b\">問題B</h1>\n<p>輸入有一個字串，把他輸出出來</p>",
       "problem": "問題B",
       "id": 2,
-      "in": "asds",
+      "in": "asds\n",
       "out": "asds"
     }
   ]

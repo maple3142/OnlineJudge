@@ -1,3 +1,6 @@
+/*
+ * Don't use this mode for security!!!!!!!!!!!!!
+*/
 var Promise=require('bluebird');
 var fs=Promise.promisifyAll(require('fs'));
 var path=require('path');

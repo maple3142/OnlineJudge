@@ -27,6 +27,7 @@ function judge(options) {
 					return;
 				}
 			}
+			if(options.debug)console.log(__dirname);
 			/*default values*/
 			var rs = {
 				Accepted: 'AC',
@@ -57,20 +58,28 @@ function judge(options) {
 			});
 			var timelimit = options.timelimit;
 			var execcmd = 'bash -c "source ./excute.sh ./' + path.join('temp', name + '.out') + '"';
+			if(options.debug)console.log(compilecmd);
+			if(options.debug)console.log(execcmd);
 			write(source, code).then(function () {
 				return compile(compilecmd);
 			}).catch(function (e) {
-				fs.unlinkAsync(source);
+				if(!options.debug){
+					fs.unlinkAsync(source);
+				}
 				resolve(e);
 			}).then(function () {
 				return exec(execcmd, options.in, options.out, options.timelimit, options.result);
 			}).then(function (d) {
-				fs.unlinkAsync(source);
-				fs.unlinkAsync(dest);
+				if(!options.debug){
+					fs.unlinkAsync(source);
+					fs.unlinkAsync(dest);
+				}
 				resolve(d);
 			}).catch(function (e) {
-				fs.unlinkAsync(source);
-				fs.unlinkAsync(dest);
+				if(!options.debug){
+					fs.unlinkAsync(source);
+					fs.unlinkAsync(dest);
+				}
 				resolve(e);
 			});
 		}
@@ -119,7 +128,7 @@ function exec(cmd, input, output, limit, result) {
 			else out += s.toString();
 		});
 		px.on('close', function (code) {
-			var time = starttime - Date.now();
+			var time = Date.now() - starttime;
 			if (code != 0) {/*Runtime_Error*/
 				reject(new Result(result.Runtime_Error, time, out));
 			}
