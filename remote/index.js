@@ -1,11 +1,12 @@
 var express=require('express');
 var app=express();
 var bodyParser=require('body-parser');
+var path=require('path');
 var sj=require('simple-judger');
+sj.setTemp(path.join(__dirname,'../','temp'));
 
 app.use(bodyParser.json());
 app.post('/',(req,res)=>{
-	console.log(req.body);
 	sj(req.body).then(d=>{
 		console.log(d);
 		res.json(d);

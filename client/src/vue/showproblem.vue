@@ -74,7 +74,6 @@ export default {
 				}).then(d=>{
 					if(!d.data.ok)this.autherror=true;
 					else{
-						console.log(d.data);
 						this.result=d.data.result;
 						this.time=d.data.time;
 						switch(this.result){

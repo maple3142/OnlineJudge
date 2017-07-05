@@ -21,7 +21,7 @@ export default {
   },
   mounted () {
   	const lang = this.lang || 'c_cpp';
-    const theme = this.theme || 'Eclipse';
+    const theme = this.theme || 'eclipse';
   
 	this.editor = window.ace.edit(this.editorId);
     this.editor.setValue(this.content, 1);

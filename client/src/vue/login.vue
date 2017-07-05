@@ -17,11 +17,6 @@
 					<b-button id="submit" class="btn btn-primary" @click="login">登入</b-button>
 				</div>
 			</form>
-			<spoiler btn="顯示測試用帳密" title="帳密">
-				帳號: admin
-				<br>
-				密碼: admin
-			</spoiler>
 			<b-alert variant="danger" dismissible :show="this.loginwrong && !this.$root.login" @dismissed="loginwrong=false">
 				帳號或密碼錯誤!
 			</b-alert>

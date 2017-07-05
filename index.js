@@ -22,4 +22,10 @@ app.get('/',(req,res)=>{
 require('./login.js')(app);
 require('./judge.js')(app);
 require('./problem.js')(app);
-app.listen(process.env.PORT||80);
+app.listen(process.argv[2]||process.env.PORT||80);
+
+
+process.on('uncaughtException', function(err) {
+	console.error('uncaughtException');
+	console.error(err);
+});
