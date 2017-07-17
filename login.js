@@ -21,7 +21,6 @@ module.exports=function(app){
 		if(r){
 			json.ok=true;
 			json.id=r.id;
-			console.log(req.body.account+' logined ');
 		}
 		res.json(json);
 	});

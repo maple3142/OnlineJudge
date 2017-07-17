@@ -4,6 +4,15 @@ OnlineJudge
 Preview:
 ![Preview](http://i.imgur.com/zILxBDR.jpg)
 
+deploy
+-------------
+```
+cd node_modules/simple-judger/esb
+make runtests
+cd ../../../
+npm start <PORT>
+```
+
 db.json
 -------------
 ```javascript

@@ -8,7 +8,7 @@ var cp=require('child_process');
 var axios=require('axios');
 var sj=require('simple-judger');
 var db=low('./db.json');
-sj.setTemp(path.join(__dirname,'temp'));
+//sj.setTemp(path.join(__dirname,'temp'));
 
 module.exports=function(app){
 	app.post('/judge',(req,res)=>{
@@ -22,6 +22,8 @@ module.exports=function(app){
 			sj(cfg).then(d=>{
 				d.ok=true;
 				res.json(d);
+			}).catch(e=>{
+				console.error(e);
 			});
 		}
 		else if(mode===2){
