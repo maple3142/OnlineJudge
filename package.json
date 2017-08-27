@@ -20,6 +20,7 @@
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "bootstrap-vue": "^0.16.1",
+	"commander": "^2.11.0",
     "express": "^4.15.3",
     "fs-extra": "^3.0.1",
     "lowdb": "^0.16.2",

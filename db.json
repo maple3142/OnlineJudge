@@ -26,7 +26,7 @@
     {
       "account": "admin",
       "password": "admin",
-      "id": "0.8519241509240347",
+      "id": "0.6214217052500879",
       "ok": [
         true,
         true,
@@ -43,16 +43,23 @@
       "out": "11"
     },
     {
+      "content": "<p>print '123'</p>",
+      "problem": "test",
+      "id": 1,
+      "in": "",
+      "out": "123"
+    },
+    {
       "content": "<h1 id=\"helloworld\">Hello World</h1>\n<p>輸出一個\"Hello World\"</p>",
       "problem": "問題A",
-      "id": 1,
+      "id": 2,
       "in": "",
       "out": "Hello World"
     },
     {
       "content": "<h1 id=\"b\">問題B</h1>\n<p>輸入有一個字串，把他輸出出來</p>",
       "problem": "問題B",
-      "id": 2,
+      "id": 3,
       "in": "asds\n",
       "out": "asds"
     }
