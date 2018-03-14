@@ -1,6 +1,8 @@
 OnlineJudge
 =====================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/maple3142/OnlineJudge.svg)](https://greenkeeper.io/)
+
 Preview:
 ![Preview](http://i.imgur.com/zILxBDR.jpg)
 
